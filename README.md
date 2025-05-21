@@ -1,4 +1,5 @@
-# todo_spring_java17
+# spring_best_practices_api_rest_java17
+
 This project has the objetive of join best practices of CRUD of API REST
 in spring with connection mysql, redis
 
