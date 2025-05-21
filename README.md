@@ -1,3 +1,7 @@
+# todo_spring_java17
+This project has the objetive of join best practices of CRUD of API REST
+in spring with connection mysql, redis
+
 Practices used in the project
 
 General
@@ -48,3 +52,34 @@ Repository Implementation
 2. Query derivation from method names findByIdAndDeletedAtIsNull
 3. Soft Delete Support
 4. JPA and SPECIFICACION to obtain data of databse
+
+## Technologies used
+- Java 17
+- spring 3.4.4
+- redis 7.4
+- mysql 5.7
+## What does this project do?
+- You can request information of countries and people of a database
+- Help to develop another API REST with this best practices recopilation and faster
+- A guide to orient best practices of CRUD in spring
+## How to run this project
+### Prerequisites
+1. Java 17 installed
+2. Maven installed
+3. Docker installed
+### Steps
+1. Make sure that you dont have ports 3306, 8082, 5540, 6379 taken
+2. Go to infraestructure folder and execute docker-compose up
+3. You should change default values of docker-compose and application properties or can use default values. In root path create a file env.properties with this values 
+DB_DATABASE=sakila
+DB_USER=root
+DB_PASSWORD=tienda-videos
+DB_IP=localhost
+DB_PORT=3306
+CRIPTO_KEY=key-64-bits
+REDIS_PASSWORD=redis-password
+REDIS_HOST=redis-host
+REDIS_PORT=6379
+Change your custom values and make sure that is the same in docker compose.
+
+3. Go to the root path and excute mvn spring-boot:run

@@ -1,0 +1,49 @@
+version: "3.3"
+services:
+  mysql:
+    networks:
+      - network-tienda-videos
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=sql-password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database/01-sakila-data-schema-03312025.sql:/docker-entrypoint-initdb.d/01-sakila-data-schema-03312025.sql
+    
+  redis:
+    image: redis:7.4
+    container_name: redis_server
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    volumes:
+      - redis_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - network-tienda-videos
+  redisinsight:
+    image: redislabs/redisinsight:2.66
+    container_name: redisinsight
+    restart: unless-stopped
+    ports:
+      - "5540:5540"
+    networks:
+      - network-tienda-videos
+    depends_on:
+      - redis
+    volumes:
+      - redisinsight_data:/data
+networks:
+  network-tienda-videos:
+volumes:
+  redis_data:
+    driver: local
+  redisinsight_data:
+    driver: local
