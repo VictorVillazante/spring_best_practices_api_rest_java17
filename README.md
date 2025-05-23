@@ -68,8 +68,9 @@ Repository Implementation
 1. Java 17 installed
 2. Maven installed
 3. Docker installed
+4. Make sure that you dont have ports 3306, 8082, 5540, 6379 taken
 ### Steps
-1. Make sure that you dont have ports 3306, 8082, 5540, 6379 taken
+1. Clone this repository
 2. Go to infraestructure folder and execute docker-compose up
 3. You should change default values of docker-compose and application properties or can use default values. In root path create a file env.properties with this values 
 DB_DATABASE=sakila
