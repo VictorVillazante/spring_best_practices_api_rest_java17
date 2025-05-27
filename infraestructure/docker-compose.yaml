@@ -1,19 +1,18 @@
-version: "3.3"
 services:
   mysql:
     networks:
       - network-tienda-videos
-    image: mysql:5.7
+    image: mysql:5.7.44
     environment:
       - MYSQL_ROOT_PASSWORD=sql-password
     ports:
       - 3306:3306
     volumes:
-      - ./database/01-sakila-data-schema-03312025.sql:/docker-entrypoint-initdb.d/01-sakila-data-schema-03312025.sql
+      - ./database/mysql-conf/custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ./database/01-sakila-data-schema-05272025.sql:/docker-entrypoint-initdb.d/01-sakila-data-schema-05272025.sql
     
   redis:
     image: redis:7.4
-    container_name: redis_server
     restart: unless-stopped
     ports:
       - "6379:6379"
